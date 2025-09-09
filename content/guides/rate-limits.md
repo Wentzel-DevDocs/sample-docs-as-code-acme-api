@@ -7,7 +7,7 @@ audience: developers
 category: how-to
 product: Acme Parcel API
 owners: api-docs
-last_reviewed: 2025-08-12
+last_reviewed: 2025-09-09
 ---
 
 # Rate limits
