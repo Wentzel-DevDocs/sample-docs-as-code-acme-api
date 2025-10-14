@@ -7,7 +7,7 @@ audience: developers
 category: how-to
 product: Acme Parcel API
 owners: api-docs
-last_reviewed: 2025-09-09
+last_reviewed: 2025-10-14
 ---
 
 # Authentication
