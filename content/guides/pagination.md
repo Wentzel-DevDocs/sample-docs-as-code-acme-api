@@ -7,7 +7,7 @@ audience: developers
 category: how-to
 product: Acme Parcel API
 owners: api-docs
-last_reviewed: 2025-11-11
+last_reviewed: 2025-12-09
 ---
 
 # Pagination
