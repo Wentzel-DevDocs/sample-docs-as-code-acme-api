@@ -5,7 +5,7 @@
   "summary": "REST API documentation for Acme Parcel: create shipments, buy labels, track packages, and receive webhooks.",
   "sampleQuestion": "How do I verify a webhook signature?",
   "product": "Acme Parcel API",
-  "docsVersion": "0.4.0",
+  "docsVersion": "0.7.0-dev",
   "supportEmail": "docs-sample@example.com",
   "extraArtifacts": [
     {
