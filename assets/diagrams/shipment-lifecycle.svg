@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="160" viewBox="0 0 760 160" role="img" aria-labelledby="title desc">
+  <title id="title">Shipment lifecycle</title>
+  <desc id="desc">Flow from draft shipment to rates, purchase, and tracking updates via webhooks.</desc>
+  <rect width="760" height="160" fill="#0b1120"/>
+  <g font-family="system-ui,sans-serif" font-size="13" fill="#fff">
+    <rect x="20" y="50" width="120" height="60" rx="10" fill="#1a2640" stroke="#07a4fd" stroke-width="2"/>
+    <text x="80" y="85" text-anchor="middle">Draft</text>
+    <rect x="180" y="50" width="120" height="60" rx="10" fill="#1a2640" stroke="#07a4fd" stroke-width="2"/>
+    <text x="240" y="85" text-anchor="middle">Rated</text>
+    <rect x="340" y="50" width="120" height="60" rx="10" fill="#1a2640" stroke="#ff5c00" stroke-width="2"/>
+    <text x="400" y="85" text-anchor="middle">Purchased</text>
+    <rect x="500" y="50" width="120" height="60" rx="10" fill="#1a2640" stroke="#3b109e" stroke-width="2"/>
+    <text x="560" y="85" text-anchor="middle">In transit</text>
+    <rect x="660" y="50" width="80" height="60" rx="10" fill="#1a2640" stroke="#07a4fd" stroke-width="2"/>
+    <text x="700" y="85" text-anchor="middle">Done</text>
+  </g>
+  <path d="M140 80 H180 M300 80 H340 M460 80 H500 M620 80 H660" stroke="#8992c1" stroke-width="2"/>
+</svg>
