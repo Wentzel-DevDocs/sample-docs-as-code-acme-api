@@ -1,0 +1,53 @@
+asyncapi: 2.6.0
+info:
+  title: Acme Parcel Webhooks
+  version: 1.0.0
+  description: >
+    Sample AsyncAPI description for Acme Parcel event deliveries.
+    Pairs with openapi/openapi.yaml for a full enterprise API docs-as-code surface.
+defaultContentType: application/json
+channels:
+  tracker.updated:
+    subscribe:
+      summary: Tracking status changed
+      message:
+        name: TrackerUpdated
+        payload:
+          type: object
+          required: [id, type, data]
+          properties:
+            id: { type: string, example: evt_1b8c33d0 }
+            type: { type: string, const: tracker.updated }
+            created: { type: integer, example: 1718000000 }
+            data:
+              type: object
+              properties:
+                tracker_id: { type: string }
+                status:
+                  type: string
+                  enum: [unknown, pre_transit, in_transit, out_for_delivery, delivered, return_to_sender, failure]
+                tracking_code: { type: string }
+  shipment.purchased:
+    subscribe:
+      summary: Label purchased for a shipment
+      message:
+        name: ShipmentPurchased
+        payload:
+          type: object
+          required: [id, type, data]
+          properties:
+            id: { type: string }
+            type: { type: string, const: shipment.purchased }
+            data:
+              type: object
+              properties:
+                shipment_id: { type: string }
+                tracking_code: { type: string }
+                label_url: { type: string, format: uri }
+components:
+  securitySchemes:
+    acmeSignature:
+      type: httpApiKey
+      name: Acme-Signature
+      in: header
+      description: HMAC signature over the raw body; see Markdown webhooks guide.

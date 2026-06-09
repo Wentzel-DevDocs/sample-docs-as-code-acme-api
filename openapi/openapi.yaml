@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: Acme Parcel API
+  description: >
+    Sample OpenAPI description for the fictional Acme Parcel shipping API.
+    Used in enterprise docs-as-code demos alongside Markdown guides and reference pages.
+  version: 1.0.0
+  contact:
+    name: Acme Parcel Docs (sample)
+    email: docs-sample@example.com
+servers:
+  - url: https://api.acmeparcel.example/v1
+    description: Production
+  - url: https://api.acmeparcel.example/v1
+    description: Test mode (use ak_test_ keys)
+security:
+  - bearerAuth: []
+tags:
+  - name: Shipments
+  - name: Rates
+  - name: Tracking
+  - name: Webhooks
+paths:
+  /shipments:
+    get:
+      tags: [Shipments]
+      summary: List shipments
+      operationId: listShipments
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+        - name: starting_after
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: Paginated shipment list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShipmentList"
+    post:
+      tags: [Shipments]
+      summary: Create a shipment
+      operationId: createShipment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ShipmentCreate"
+      responses:
+        "201":
+          description: Shipment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shipment"
+  /shipments/{shipment_id}:
+    get:
+      tags: [Shipments]
+      summary: Retrieve a shipment
+      operationId: getShipment
+      parameters:
+        - $ref: "#/components/parameters/ShipmentId"
+      responses:
+        "200":
+          description: Shipment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shipment"
+  /shipments/{shipment_id}/buy:
+    post:
+      tags: [Shipments]
+      summary: Purchase a label for a shipment
+      operationId: buyShipment
+      parameters:
+        - $ref: "#/components/parameters/ShipmentId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [rate_id]
+              properties:
+                rate_id: { type: string, example: rate_9kLm2p }
+      responses:
+        "200":
+          description: Purchased shipment with label
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shipment"
+  /rates:
+    post:
+      tags: [Rates]
+      summary: Fetch rates for a parcel
+      operationId: createRates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RateRequest"
+      responses:
+        "200":
+          description: Available rates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Rate"
+  /trackers/{tracker_id}:
+    get:
+      tags: [Tracking]
+      summary: Retrieve tracking details
+      operationId: getTracker
+      parameters:
+        - name: tracker_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Tracker
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tracker"
+  /webhook_endpoints:
+    post:
+      tags: [Webhooks]
+      summary: Create a webhook endpoint
+      operationId: createWebhookEndpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url, enabled_events]
+              properties:
+                url: { type: string, format: uri }
+                enabled_events:
+                  type: array
+                  items: { type: string }
+      responses:
+        "201":
+          description: Webhook endpoint created
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API key
+      description: Use `ak_test_...` or `ak_live_...` as the bearer token.
+  parameters:
+    ShipmentId:
+      name: shipment_id
+      in: path
+      required: true
+      schema: { type: string, example: shp_4nR2kL }
+  schemas:
+    Address:
+      type: object
+      required: [name, street1, city, state, zip, country]
+      properties:
+        name: { type: string }
+        street1: { type: string }
+        city: { type: string }
+        state: { type: string }
+        zip: { type: string }
+        country: { type: string, example: US }
+    Parcel:
+      type: object
+      required: [weight_oz]
+      properties:
+        weight_oz: { type: number, example: 16 }
+        length_in: { type: number }
+        width_in: { type: number }
+        height_in: { type: number }
+    ShipmentCreate:
+      type: object
+      required: [to_address, from_address, parcel]
+      properties:
+        to_address: { $ref: "#/components/schemas/Address" }
+        from_address: { $ref: "#/components/schemas/Address" }
+        parcel: { $ref: "#/components/schemas/Parcel" }
+    Shipment:
+      type: object
+      properties:
+        id: { type: string, example: shp_4nR2kL }
+        object: { type: string, example: shipment }
+        status: { type: string, enum: [draft, priced, purchased, refunded] }
+        tracking_code: { type: string, nullable: true }
+        label_url: { type: string, format: uri, nullable: true }
+    ShipmentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items: { $ref: "#/components/schemas/Shipment" }
+        has_more: { type: boolean }
+    RateRequest:
+      type: object
+      required: [to_address, from_address, parcel]
+      properties:
+        to_address: { $ref: "#/components/schemas/Address" }
+        from_address: { $ref: "#/components/schemas/Address" }
+        parcel: { $ref: "#/components/schemas/Parcel" }
+    Rate:
+      type: object
+      properties:
+        id: { type: string, example: rate_9kLm2p }
+        carrier: { type: string, example: AcmePost }
+        service: { type: string, example: Ground }
+        amount: { type: string, example: "8.45" }
+        currency: { type: string, example: USD }
+    Tracker:
+      type: object
+      properties:
+        id: { type: string }
+        status: { type: string, enum: [unknown, pre_transit, in_transit, out_for_delivery, delivered, return_to_sender, failure] }
+        tracking_code: { type: string }
+        public_url: { type: string, format: uri }
