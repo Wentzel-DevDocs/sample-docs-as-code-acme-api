@@ -7,7 +7,7 @@ audience: all
 category: overview
 product: Acme Parcel API
 owners: docs-writers
-last_reviewed: 2026-07-07
+last_reviewed: 2026-07-16
 locale: es
 ---
 

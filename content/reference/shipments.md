@@ -7,7 +7,7 @@ audience: developers
 category: reference
 product: Acme Parcel API
 owners: api-docs
-last_reviewed: 2026-07-07
+last_reviewed: 2026-07-16
 ---
 
 # Shipments
