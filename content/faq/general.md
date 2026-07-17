@@ -2,6 +2,12 @@
 title: General FAQ
 description: Common questions about carriers, test mode, label formats, refunds, and getting support.
 order: 1
+status: stable
+audience: all
+category: troubleshooting
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # General FAQ

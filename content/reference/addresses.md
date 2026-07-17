@@ -2,6 +2,12 @@
 title: Addresses
 description: The address object used across the API and the standalone address validation endpoint.
 order: 3
+status: stable
+audience: developers
+category: reference
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Addresses

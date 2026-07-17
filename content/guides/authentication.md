@@ -2,6 +2,12 @@
 title: Authentication
 description: How Acme Parcel API keys work — test vs live mode, the Authorization header, key rotation, and common auth errors.
 order: 2
+status: stable
+audience: developers
+category: how-to
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Authentication

@@ -2,6 +2,12 @@
 title: Rate limits
 description: Request rate limits per mode, the X-RateLimit response headers, and how to back off correctly on 429 responses.
 order: 5
+status: stable
+audience: developers
+category: how-to
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Rate limits

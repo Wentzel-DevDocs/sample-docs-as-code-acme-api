@@ -1,77 +1,75 @@
 # sample-acme-api
 
-The **medium** sample docs-as-code repo for the `hosted.devdocs.ai` multi-tenant docs product:
-15 pages in a two-level nav (Guides, API Reference, FAQ) documenting **Acme Parcel**, a fictional
-shipping REST API. The pages carry code blocks, parameter/status tables, and internal cross-links,
-which makes this repo the one to use for exercising nav trees, code rendering, and
-retrieval + citation quality across sections.
+**Medium** enterprise docs-as-code sample for [hosted.devdocs.ai](https://hosted.devdocs.ai).
+
+Documents **Acme Parcel**, a fictional shipping REST API: guides, field-level reference, FAQ, changelog, and a real OpenAPI 3 contract published beside the Markdown.
+
+| Scale | Nav | Pages | Extra artifacts |
+| --- | --- | ---: | --- |
+| Medium | Two-level | 17 | `llms.txt`, `openapi.yaml` |
+
+## Why this looks like an enterprise API docs repo
+
+- Diátaxis-ish structure: **Guides** (how-to) + **API Reference** + **FAQ** + **Changelog**
+- OpenAPI 3.0 in `openapi/openapi.yaml`, shipped as a publish artifact
+- Code samples, parameter tables, and webhook signature guidance for retrieval demos
+- Page metadata (`status`, `audience`, `owners`, `category`, `last_reviewed`)
+- CI quality gate on every PR; publish from `main` when a push token is configured
+- `CODEOWNERS` routes `/content/reference/` to an API docs team handle
 
 ## Repo layout
 
 ```
 content/
-  index.md                     root page (path "index")
-  guides/                      _section.json names + orders the group
-    quickstart.md  authentication.md  pagination.md  errors.md  rate-limits.md  webhooks.md
-  reference/
-    shipments.md  rates.md  addresses.md  tracking.md  webhook-endpoints.md  events.md
+  index.md
+  changelog.md
+  guides/                  how-to guides + _section.json
+  reference/               resource reference + OpenAPI page
   faq/
-    general.md  billing.md
-scripts/publish.mjs            build + publish script
-docs.config.json               site title, default slug, sample verification question
-.github/workflows/publish.yml  publishes from CI on push to main
+openapi/openapi.yaml       machine-readable API contract
+docs.config.json           includes extraArtifacts → openapi.yaml
+scripts/check.mjs
+scripts/publish.mjs
+.github/                   quality + publish workflows, CODEOWNERS, PR template
+CONTRIBUTING.md
+STYLEGUIDE.md
 ```
 
-## One-time account setup (manual, done in the product)
+## Content map
 
-1. Sign up at `https://hosted.devdocs.ai/signup` and verify the email.
-2. Claim a subdomain in the dashboard (for example `acmecloud`).
-3. Create a **push token** in the dashboard — it starts with `hdpt_` and is shown once.
+| Section | Pages |
+| --- | --- |
+| Root | Introduction, API changelog |
+| Guides | Quickstart, Authentication, Pagination, Errors, Rate limits, Webhooks |
+| API Reference | OpenAPI, Shipments, Rates, Addresses, Tracking, Webhook endpoints, Events |
+| FAQ | General, Billing |
 
-The token is scoped to the workspace that minted it, and the broker derives the storage path
-from the token server-side, so this repo can only ever write its own site.
-
-## Publish
+## Local workflow
 
 ```bash
-npm install
-PUSH_TOKEN=hdpt_xxx SLUG=<your-subdomain> node scripts/publish.mjs
-# or: PUSH_TOKEN=hdpt_xxx SLUG=<your-subdomain> npm run publish
+npm ci
+npm test
+PUSH_TOKEN=hdpt_xxx SLUG=acmecloud npm run publish   # optional
 ```
 
-- `VERSION` is optional (env var or first CLI arg); it defaults to a timestamp.
-- `SLUG` only affects the live URL printed at the end; set `defaultSlug` in `docs.config.json`
-  to your claimed subdomain to skip it.
-- A successful push (HTTP 200) **automatically becomes the live version**. The script prints the
-  broker response (`versionId`, `entries`, `chunksIndexed`) and `https://<slug>.hosted.devdocs.ai`.
+`docs.config.json` → `extraArtifacts` copies `openapi/openapi.yaml` into the publish payload as `openapi.yaml`.
 
-After publishing, open the site's chat widget and ask something the docs answer — for example,
-"How do I verify a webhook signature?" — to verify grounded citations across sections.
+## One-time product setup
 
-## Build without publishing (no token needed)
+1. Sign up at `https://hosted.devdocs.ai/signup`.
+2. Claim a subdomain (for example `acmecloud`).
+3. Create a push token and set `HOSTED_DOCS_PUSH_TOKEN` in repo secrets for CI.
 
-```bash
-DRY_RUN=1 node scripts/publish.mjs
-```
+## Verify after publish
 
-Writes the exact POST body to `dist/push-body.json` and unpacks every artifact under `dist/site/`.
+Ask the chat widget: **How do I verify a webhook signature?**
 
-## Publish from CI (the intended model)
+Also confirm `https://<slug>.hosted.devdocs.ai/openapi.yaml` is reachable after publish.
 
-Add the push token as a repo secret named `HOSTED_DOCS_PUSH_TOKEN`; the included workflow builds
-and publishes on every push to `main`, using the git SHA as the version.
+## Related samples
 
-## How the artifact format works
-
-Each publish POSTs `{ manifest, files }` to `https://hosted.devdocs.ai/api/broker/push` with
-`Authorization: Bearer <PUSH_TOKEN>`. `manifest.entries` lists every file with its lowercase hex
-`sha256` and byte `size` (verified server-side); `files` maps the same paths to base64 bytes.
-Artifacts per publish: one `manifest.json` (`{ version, siteTitle, nav }` — folders become
-grouping NavEntries, files become leaves), a `<path>.page.json` per page (sanitized `bodyHtml`
-with id anchors matching its `toc`), and the verbatim `<path>.md` source that feeds the AI
-retrieval index. The root page's path is exactly `index`.
-
-## Editing content
-
-Pages are markdown with frontmatter (`title`, `description`, `order`). Each folder's
-`_section.json` (`{ "title": "API Reference", "order": 2 }`) names and orders its nav group.
+| Repo | Intent |
+| --- | --- |
+| [hello-docs](https://github.com/Wentzel-DevDocs/sample-docs-as-code-hello-docs) | Simple / flat |
+| [acme-api](https://github.com/Wentzel-DevDocs/sample-docs-as-code-acme-api) | Medium / API + OpenAPI |
+| [nimbus-platform](https://github.com/Wentzel-DevDocs/sample-docs-as-code-nimbus-platform) | Complex / platform |

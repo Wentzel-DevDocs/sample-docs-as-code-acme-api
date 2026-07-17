@@ -2,6 +2,12 @@
 title: Events
 description: The event object, every event type the API emits, and the events list endpoint used for backfill and audit.
 order: 6
+status: stable
+audience: developers
+category: reference
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Events

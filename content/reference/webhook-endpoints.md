@@ -2,6 +2,12 @@
 title: Webhook endpoints
 description: Manage webhook endpoints — create, list, update, delete — and rotate their signing secrets.
 order: 5
+status: stable
+audience: developers
+category: reference
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Webhook endpoints

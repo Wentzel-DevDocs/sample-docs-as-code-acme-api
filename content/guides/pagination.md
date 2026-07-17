@@ -2,6 +2,12 @@
 title: Pagination
 description: How list endpoints paginate with cursor parameters — limit, starting_after, and the has_more flag.
 order: 3
+status: stable
+audience: developers
+category: how-to
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Pagination

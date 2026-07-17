@@ -2,6 +2,12 @@
 title: Errors
 description: The Acme Parcel error envelope, the HTTP status codes the API returns, every error type, and guidance on retries and idempotency.
 order: 4
+status: stable
+audience: developers
+category: how-to
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Errors

@@ -2,6 +2,12 @@
 title: Webhooks
 description: Receive shipment and tracking events by HTTPS push — endpoint setup, the event payload, signature verification, and retry behavior.
 order: 6
+status: stable
+audience: developers
+category: how-to
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Webhooks

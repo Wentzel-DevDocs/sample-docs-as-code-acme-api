@@ -1,8 +1,0 @@
-{
-  "siteTitle": "Acme Parcel API",
-  "generator": "sample-docs-builder/1.0.0 (sample-acme-api)",
-  "defaultSlug": "acmecloud",
-  "sampleQuestion": "How do I verify a webhook signature?",
-  "llmsTxt": false,
-  "llmsSummary": "REST API documentation for Acme Parcel: create shipments, buy labels, track packages, and receive webhooks."
-}

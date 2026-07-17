@@ -2,6 +2,12 @@
 title: Shipments
 description: The shipment object and its endpoints — create, list, retrieve, purchase, and cancel.
 order: 1
+status: stable
+audience: developers
+category: reference
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Shipments

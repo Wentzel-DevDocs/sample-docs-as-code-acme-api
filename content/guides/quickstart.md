@@ -2,6 +2,12 @@
 title: Quickstart
 description: Create your first shipment, choose a rate, buy a label, and fetch tracking — a complete end-to-end walkthrough in test mode.
 order: 1
+status: stable
+audience: developers
+category: how-to
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Quickstart

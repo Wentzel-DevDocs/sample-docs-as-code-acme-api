@@ -2,6 +2,12 @@
 title: Billing FAQ
 description: How label purchases are billed, what happens on carrier reweighs, and how refunds for unused labels work.
 order: 2
+status: stable
+audience: all
+category: troubleshooting
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Billing FAQ

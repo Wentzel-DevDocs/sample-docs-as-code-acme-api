@@ -2,6 +2,12 @@
 title: Rates
 description: The rate object, how rates are generated when a shipment is created, and the standalone rate quote endpoint.
 order: 2
+status: stable
+audience: developers
+category: reference
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Rates

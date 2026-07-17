@@ -2,6 +2,12 @@
 title: Introduction
 description: The Acme Parcel API is a REST API for creating shipments, buying carrier labels, tracking packages, and receiving delivery webhooks.
 order: 0
+status: stable
+audience: all
+category: overview
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Introduction
@@ -41,3 +47,5 @@ curl https://api.acmeparcel.example/v1/shipments \
 - [Errors](/guides/errors) and [Rate limits](/guides/rate-limits) — how failures are reported and throttled.
 - [Webhooks](/guides/webhooks) — get pushed events instead of polling.
 - The [API Reference](/reference/shipments) — every resource, field by field.
+- The [OpenAPI specification](/reference/openapi) — machine-readable contract for SDKs and CI.
+- The [API changelog](/changelog) — what changed for integrators.

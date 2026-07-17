@@ -2,6 +2,12 @@
 title: Tracking
 description: The tracker object, tracking statuses, the tracking events array, and how tracker.updated webhooks relate to polling.
 order: 4
+status: stable
+audience: developers
+category: reference
+product: Acme Parcel API
+owners: api-docs
+last_reviewed: 2026-07-01
 ---
 
 # Tracking
