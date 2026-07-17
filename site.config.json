@@ -1,0 +1,7 @@
+{
+  "siteTitle": "Acme Cloud API",
+  "generator": "sample-docs-builder/1.0.0 (sample-acme-api)",
+  "defaultSlug": "acmecloud",
+  "sampleQuestion": "How do I verify a webhook signature?",
+  "llmsTxt": false
+}
