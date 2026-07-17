@@ -5,12 +5,17 @@
   "summary": "REST API documentation for Acme Parcel: create shipments, buy labels, track packages, and receive webhooks.",
   "sampleQuestion": "How do I verify a webhook signature?",
   "product": "Acme Parcel API",
-  "docsVersion": "1.1.0",
+  "docsVersion": "1.2.0",
   "supportEmail": "docs-sample@example.com",
   "extraArtifacts": [
     {
       "path": "openapi.yaml",
       "source": "openapi/openapi.yaml",
+      "contentType": "application/yaml"
+    },
+    {
+      "path": "asyncapi.yaml",
+      "source": "asyncapi/webhooks.yaml",
       "contentType": "application/yaml"
     }
   ]

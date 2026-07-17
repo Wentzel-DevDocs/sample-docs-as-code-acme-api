@@ -14,6 +14,8 @@ last_reviewed: 2026-07-01
 
 The Acme Parcel API lets you create shipments, compare carrier rates, buy shipping labels, and track packages from your own systems. It is a conventional REST API: resources are nouns, requests and responses are JSON, and standard HTTP status codes signal success or failure.
 
+![Shipment lifecycle from draft through rates, purchase, transit, and delivery](/assets/diagrams/shipment-lifecycle.svg)
+
 ## Base URL and versioning
 
 All requests go to:

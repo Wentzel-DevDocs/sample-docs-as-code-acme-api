@@ -12,6 +12,8 @@ last_reviewed: 2026-07-01
 
 # Quickstart
 
+<!-- include: auth-header.md -->
+
 This walkthrough uses test mode, so nothing is charged and no real label is produced. You need a test API key (`ak_test_...`); see [Authentication](/guides/authentication) for where to find it.
 
 ## 1. Create a shipment

@@ -16,6 +16,8 @@ The API signals failure with conventional HTTP status codes and a single JSON er
 
 ## The error envelope
 
+<!-- include: error-envelope.md -->
+
 ```json
 {
   "error": {
